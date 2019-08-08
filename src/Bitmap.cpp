@@ -7,7 +7,7 @@ using namespace std;
 
 
 
-Bitmap::Bitmap(int width, int height) : m_width(width), m_height(height), pPixels(new uint8_t[width*height * 3]{})
+Bitmap::Bitmap(int width, int height) : m_width(width), m_height(height), m_pPixels(new uint8_t[width*height * 3]{})
 {}
 
 bool Bitmap::write(string filename) {
@@ -27,7 +27,7 @@ bool Bitmap::write(string filename) {
 
 	file.write((char *)&fileHeader, sizeof(BitmapFileHeader));
 	file.write((char *)&infoHeader, sizeof(BitmapInfoHeader));
-	file.write((char *)pPixels.get(), m_width*m_height*3);
+	file.write((char *)m_pPixels.get(), m_width*m_height * 3);
 
 	file.close();
 	if (!file) {
@@ -38,7 +38,11 @@ bool Bitmap::write(string filename) {
 }
 
 void Bitmap::setPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue) {
-
+	uint8_t *pPixel = m_pPixels.get();
+	pPixel += y * 3 * m_width + x * 3;
+	pPixel[0] = blue;
+	pPixel[1] = green;
+	pPixel[2] = red;
 }
 
 Bitmap::~Bitmap()
