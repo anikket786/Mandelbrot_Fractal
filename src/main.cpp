@@ -1,8 +1,10 @@
 #include <iostream>
 #include <cstdint>
 #include <memory>
+#include <math.h>
 #include "Bitmap.h"
 #include "Mandelbrot.h"
+#include "Zoom.h"
 
 using namespace std;
 
@@ -49,7 +51,7 @@ int main() {
 					hue += ((double)histogram[i] / total);
 				}
 
-				blue = pow(255, hue);
+				green = pow(255, hue);
 			}
 
 			bitmap.setPixel(x, y, red, green, blue);
