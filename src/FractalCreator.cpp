@@ -51,7 +51,7 @@ void FractalCreator::drawFractal() {
 					hue += ((double)m_histogram[i] / m_total);
 				}
 
-				green = hue * 255;
+				green = pow(255, hue);
 			}
 
 			m_bitmap.setPixel(x, y, red, green, blue);
