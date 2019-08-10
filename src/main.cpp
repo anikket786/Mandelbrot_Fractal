@@ -1,10 +1,11 @@
 #include <iostream>
 #include <cstdint>
 #include <memory>
-#include <math.h>
+#include <utility>
 #include "Bitmap.h"
 #include "Mandelbrot.h"
 #include "ZoomList.h"
+#include "FractalCreator.h"
 
 using namespace std;
 
@@ -14,15 +15,21 @@ int main() {
 	Bitmap bitmap(WIDTH, HEIGHT);
 	double min = 999999;
 	double max = -999999;
+
+	ZoomList zoomList(WIDTH, HEIGHT);
+	zoomList.add(Zoom(WIDTH/2, HEIGHT/2, 4.0/WIDTH));
+	zoomList.add(Zoom(295, HEIGHT-202, 0.1));
+	zoomList.add(Zoom(312, HEIGHT - 304, 0.1));
+
 	unique_ptr<int[]> histogram(new int[Mandelbrot::MAX_ITERATIONS]{ 0 });
 	unique_ptr<int[]> fractal(new int[WIDTH*HEIGHT]);
 
 	for (int y = 0; y < HEIGHT; y++) {
 		for (int x = 0; x < WIDTH; x++) {
-			double xFractal = (x - WIDTH/2 - 200) * 2.0/HEIGHT;
-			double yFractal = (y - HEIGHT/2) * 2.0/HEIGHT;
+			
+			pair<double, double> coords = zoomList.doZoom(x, y);
 
-			int iterations = Mandelbrot::getIterations(xFractal, yFractal);
+			int iterations = Mandelbrot::getIterations(coords.first, coords.second);
 
 			fractal[y*WIDTH + x] = iterations;
 			if (iterations != Mandelbrot::MAX_ITERATIONS) {
@@ -51,7 +58,7 @@ int main() {
 					hue += ((double)histogram[i] / total);
 				}
 
-				green = pow(255, hue);
+				green = hue*255;
 			}
 
 			bitmap.setPixel(x, y, red, green, blue);
