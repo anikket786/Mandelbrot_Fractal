@@ -1,72 +1,20 @@
 #include <iostream>
-#include <cstdint>
-#include <memory>
-#include <utility>
-#include "Bitmap.h"
-#include "Mandelbrot.h"
-#include "ZoomList.h"
 #include "FractalCreator.h"
 
 using namespace std;
 
 int main() {
-	const int WIDTH = 800;
-	const int HEIGHT = 600;
-	Bitmap bitmap(WIDTH, HEIGHT);
-	double min = 999999;
-	double max = -999999;
 
-	ZoomList zoomList(WIDTH, HEIGHT);
-	zoomList.add(Zoom(WIDTH/2, HEIGHT/2, 4.0/WIDTH));
-	zoomList.add(Zoom(295, HEIGHT-202, 0.1));
-	zoomList.add(Zoom(312, HEIGHT - 304, 0.1));
+	int height = 600;
 
-	unique_ptr<int[]> histogram(new int[Mandelbrot::MAX_ITERATIONS]{ 0 });
-	unique_ptr<int[]> fractal(new int[WIDTH*HEIGHT]);
+	FractalCreator fractalCreator(800, 600);
 
-	for (int y = 0; y < HEIGHT; y++) {
-		for (int x = 0; x < WIDTH; x++) {
-			
-			pair<double, double> coords = zoomList.doZoom(x, y);
-
-			int iterations = Mandelbrot::getIterations(coords.first, coords.second);
-
-			fractal[y*WIDTH + x] = iterations;
-			if (iterations != Mandelbrot::MAX_ITERATIONS) {
-				histogram[iterations]++;
-			}
-		}
-	}
-	
-	int total = 0;
-	for (int i = 0; i < Mandelbrot::MAX_ITERATIONS; i++) {
-		total += histogram[i];
-	}
-
-	for (int y = 0; y < HEIGHT; y++) {
-		for (int x = 0; x < WIDTH; x++) {
-
-			uint8_t red = 0;
-			uint8_t green = 0;
-			uint8_t blue = 0;
-
-			int iterations = fractal[y*WIDTH+x];
-
-			if (iterations != Mandelbrot::MAX_ITERATIONS) {
-				double hue = 0.0;
-				for (int i = 0; i <= iterations; i++) {
-					hue += ((double)histogram[i] / total);
-				}
-
-				green = hue*255;
-			}
-
-			bitmap.setPixel(x, y, red, green, blue);
-
-		}
-	}
-
-	bitmap.write("../generated_image/Mandelbrot_fractal.bmp");
+	fractalCreator.addZoom(Zoom(295, height - 202, 0.1));
+	fractalCreator.addZoom(Zoom(312, height - 304, 0.1));
+	fractalCreator.calculateIteration();
+	fractalCreator.calculateTotalIterations();
+	fractalCreator.drawFractal();
+	fractalCreator.writeBitmap("../generated_image/Mandelbrot_fractal.bmp");
     std::cout << "Finished." << "\n";
     return 0;
 }
