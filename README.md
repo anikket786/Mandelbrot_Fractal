@@ -39,3 +39,7 @@ This project is created using c++17. What this project actually does is creates 
 # Output
 
 ![Mandelbrot_frcatal](generated_image/Mandelbrot_fractal.bmp)
+
+# File Structure
+
+![File Realtionships](file_structure.png)
