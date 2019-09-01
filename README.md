@@ -43,3 +43,27 @@ This project is created using c++17. What this project actually does is creates 
 # File Structure
 
 ![File Realtionships](file_structure.png)
+
+# Project Rubrics
+
+1. The project demonstrates an understanding of C++ functions and control structures.
+  * File: `FractalCreator.cpp`, Line: `16, 17, 24`
+  
+2. The project reads data from a file and process the data, or the program writes data to a file.
+  * File: `Bitmap.cpp`, Line: `26, 27, 28`
+  
+3. The project uses Object Oriented Programming techniques.
+  * File: `Bitmap.h` `Mandelbrot.h` `FractalCreator.h` `ZoomList.h` etc.
+
+4. Classes use appropriate access specifiers for class members.
+  * File: `Bitmap.h`, Line: `12, 17`
+  * File: `FractalCreator.h`, Line: `15`
+  * File: `ZoomList.h`, Line: `8, 17`
+  * File: `Mandelbrot.h`, Line: `6, 9`
+  
+5. Class constructors utilize member initialization lists.
+  * File: `Bitmap.cpp`, Line: `8`
+  * File: `FractalCreator.cpp`, Line: `4`
+  
+6. The project uses smart pointers instead of raw pointers.
+  * File: `Bitmap.h`, Line: `15`
