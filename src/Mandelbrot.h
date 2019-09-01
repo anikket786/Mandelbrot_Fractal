@@ -1,5 +1,7 @@
 #pragma once
 
+#include <complex>
+
 class Mandelbrot{
 public:
 	static const int MAX_ITERATIONS{ 1000 };
