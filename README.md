@@ -29,9 +29,9 @@ This project is created using c++17. What this project actually does is creates 
 ### For Windows using Visual Studio
 1. Clone this repo.
 2. Make a build directory in the top level directory: `mkdir build && cd build`
-3. Compile 'cmake --build .'
-4. Navigate to  build directory and double click on 'MandelbrotFractal.sln' file.
-5. Right click on the 'MandalbrotFractal' project in solution explorer and click on 'Rebuild'.
-6. Again Right click on the 'MandelbrotFractal' project in solution explorer and click on 'set as startup project'.
-7. press 'F5' and run the project.
-8. Wait for some time, when it says 'finished' navigate to 'Mandelbrot_Fractal\generated_image' folder u will see the generated image.
+3. Compile `cmake --build .`
+4. Navigate to  build directory and double click on `MandelbrotFractal.sln` file.
+5. Right click on the `MandalbrotFractal` project in solution explorer and click on `Rebuild`.
+6. Again Right click on the `MandelbrotFractal` project in solution explorer and click on `set as startup project`.
+7. press `F5` and run the project.
+8. Wait for some time, when it says `finished` navigate to `Mandelbrot_Fractal\generated_image` folder u will see the generated image.
