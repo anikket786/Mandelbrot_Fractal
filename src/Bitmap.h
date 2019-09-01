@@ -2,6 +2,9 @@
 
 #include <string>
 #include <cstdint>
+#include "BitmapFileHeader.h"
+#include "BitmapInfoHeader.h"
+
 using namespace std;
 
 class Bitmap
