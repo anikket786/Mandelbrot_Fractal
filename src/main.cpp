@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 
-	cout <<"Program is Running.... " <<"This will take around a minute" <<endl;
+	cout <<"Program is Running.... " <<"This will take a while!" <<endl;
 	
 	int height = 1080;
 
