@@ -1,7 +1,5 @@
 #include <fstream>
 #include "Bitmap.h"
-#include "BitmapFileHeader.h"
-#include "BitmapInfoHeader.h"
 
 using namespace std;
 
