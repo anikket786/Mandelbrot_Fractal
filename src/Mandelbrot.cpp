@@ -1,6 +1,5 @@
 #pragma once
 
-#include <complex>
 #include "Mandelbrot.h"
 
 using namespace std;
